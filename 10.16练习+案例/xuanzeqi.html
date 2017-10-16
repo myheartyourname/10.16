@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选择器</title>
+	<script src="../jquery-3.2.1/jquery-3.2.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		ul{
+			width: 1000px;
+			height: 200px;
+			/* margin: 0 auto; */
+			margin-bottom: 20px;
+		}
+		ul>li{
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			float: left;
+			margin: 5px;
+		}
+	</style>
+</head>
+<body>
+	<ul class="ul1">
+		<p class="p1">p1</p>
+		<h1>h1</h1>
+		<li class="li1">li-1</li>
+		<li class="li2">li-2
+			<p>this is a p</p>
+			<span>
+				this is a span
+			</span>
+		</li>
+		<li class="li3">li-3</li>
+		<li class="li4">li-4</li>
+		<li class="li5">li-5</li>
+	</ul>
+	<ul class="ul1">
+		<!-- <p class="p1">p1</p> -->
+		<h2>h2</h2>
+		<li class="li1">li-1
+			<p>this is a p</p>
+			<span>
+				this is a span
+			</span>
+		</li>
+		<li class="li2">li-2</li>
+		<li class="li3">li-3</li>
+		<li class="li4">li-4</li>
+	</ul>
+	<ul class="ul1">
+		<p class="p1">p1</p>
+		<h3>h3</h3>
+		<li class="li1">li-1</li>
+		<li class="li2">li-2</li>
+		<li class="li3">li-3</li>
+		<li class="li4">li-4</li>
+	</ul>
+	<script>
+		$(function(){
+			$('li').filter(function(){
+				return $(this).index()==3
+			}).css('background','purple');
+		})
+	</script>
+</body>
+</html>

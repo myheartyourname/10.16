@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片放大</title>
+	<link rel="stylesheet" href="css/iconfont/iconfont.css">
+	<script src="../../jquery-3.2.1/jquery-3.2.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			height: 0;
+			list-style: none;
+		}
+		body,html{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			position: relative;
+		}
+		body{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		ul{
+			width: 920px;
+			height: 410px;
+			padding: 0;
+			display: flex;
+			justify-content: space-between;
+			align-content: space-between;
+			flex-wrap: wrap;
+		}
+		ul>li{
+			width: 300px;
+			height: 200px;
+		}
+		ul>li>img{
+			width: 100%;
+			height: 100%;
+		}
+		.mask{
+			width: 600px;
+			height: 400px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+			box-shadow: 0 0 0 1000px rgba(0,0,0,0.9);
+			transform: scale(0,0);
+			color: #fff;
+			text-align: center;
+		}
+		.mask>img{
+			width: 100%;
+			height: 100%;
+		}
+		.mask.active{
+			transform: scale(1,1);
+		}
+		.close{
+			width: 50px;
+			height: 50px;
+			background: #fff;
+			border-radius: 50%;
+			position: absolute;
+			top: -25px;
+			right: -25px;
+			color: #000;
+			line-height: 50px;
+			cursor: pointer;
+		}
+		.btnL{
+			width: 60px;
+			height: 60px;
+			position: absolute;
+			top: calc(50% - 30px);
+			left: -100px;
+			line-height: 60px;
+			cursor: pointer;
+		}
+		.btnR{
+			width: 60px;
+			height: 60px;
+			position: absolute;
+			top: calc(50% - 30px);
+			right: -100px;
+			line-height: 60px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li><img src="img/timg.jpg" alt=""></li>
+		<li><img src="img/timg (1).jpg" alt=""></li>
+		<li><img src="img/timg(2).jpg" alt=""></li>
+		<li><img src="img/timg(3).jpg" alt=""></li>
+		<li><img src="img/timg(5).jpg" alt=""></li>
+		<li><img src="img/timg(6).jpg" alt=""></li>
+	</ul>
+	<div class="mask">
+		<img src="img/timg.jpg" alt="">
+		<div class="close"><i class="iconfont icon-guanbi"></i></div>
+		<div class="btnL"><i class="iconfont icon-zuoyou1"></i></div>
+		<div class="btnR"><i class="iconfont icon-zuoyou"></i></div>
+	</div>
+	<script>
+		$(function(){
+			let lis=$('ul>li');
+            let mask=$('div.mask');
+            let mimg=$('img',mask);
+            let close=$('div.close');
+            let btnL=$('div.btnL');
+            let btnR=$('div.btnR');
+            let index;
+            lis.on('click',function(){
+            	index=$(this).index();
+                let src=$(this).find('img').attr('src');
+                mimg.attr('src',src)
+                mask.addClass("active");
+            })
+            close.on('click',function(){
+                mask.removeClass('active');
+            })
+            btnL.on('click',function(){
+                index--;
+                if(index<0){
+                	index=0;
+                	return;
+                }
+                let src=lis.eq(index).find('img').attr('src');
+                mimg.attr('src',src)
+            })
+            btnR.on('click',function(){
+                index++;
+                if(index>lis.length-1){
+                	index=lis.length-1;
+                	return;
+                }
+                let src=lis.eq(index).find('img').attr('src');
+                mimg.attr('src',src)
+            })
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1/jquery-3.2.1.js"></script>
+	<style>
+		.focused{
+			background: #abcdef;
+		}
+	</style>
+</head>
+<body>
+	<div id="content">
+		<input tabindex="1">
+		<input tabindex="2">
+		<select name="" id="" tabindex="3">
+			<option value="">select menu</option>
+		</select>
+		<div tabindex="4">this is a div</div>
+	</div>
+	<script>
+		$( "#content" ).delegate( "*", "focus blur", function( event ) {
+        var elem = $( this );
+        setTimeout(function() {
+            elem.toggleClass( "focused", elem.is( ":focus" ) );
+        }, 0);
+    })
+	</script>
+</body>
+</html>
